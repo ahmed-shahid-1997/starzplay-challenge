@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Movie Search</string>
+    <string name="original_title_placeholder">Original Title: %s</string>
+    <string name="play">Play</string>
+</resources>

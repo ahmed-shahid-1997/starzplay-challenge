@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="mediaItem"
+            type="com.comm.data.model.MediaItem" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/default_padding"
+        tools:context=".mediaitem.MediaItemActivity">
+
+        <ImageView
+            android:id="@+id/poster"
+            showPoster="@{mediaItem}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_movie" />
+
+        <Button
+            android:id="@+id/play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/play"
+            android:visibility="@{mediaItem.playable ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/poster" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:textColor="?attr/colorOnSecondary"
+            app:layout_constraintTop_toBottomOf="@id/play_button"
+            app:showDate="@{mediaItem}"
+            tools:text="2020-08-19" />
+
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@{mediaItem.overview}"
+            app:layout_constraintTop_toBottomOf="@id/date"
+            tools:text="Overview comes here" />
+
+        <TextView
+            android:id="@+id/original_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:textColor="?attr/colorOnSecondary"
+            android:visibility="@{mediaItem.showOriginalTitle ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/overview"
+            app:showOriginalTitle="@{mediaItem}"
+            tools:text="@string/original_title_placeholder" />
+
+        <TextView
+            android:id="@+id/vote_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:drawablePadding="@dimen/default_padding"
+            android:gravity="start|center"
+            android:text="@{mediaItem.voteCount.toString()}"
+            android:textColor="?attr/colorOnSecondary"
+            android:visibility="@{mediaItem.showVoteCount ? View.VISIBLE : View.GONE}"
+            app:drawableStartCompat="@drawable/ic_people"
+            app:layout_constraintTop_toBottomOf="@id/original_name"
+            tools:text="5896" />
+
+        <TextView
+            android:id="@+id/vote_average"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:drawablePadding="@dimen/default_padding"
+            android:gravity="start|center"
+            android:text="@{mediaItem.voteAverage.toString()}"
+            android:textColor="?attr/colorOnSecondary"
+            android:visibility="@{mediaItem.showVoteAverage ? View.VISIBLE : View.GONE}"
+            app:drawableStartCompat="@drawable/ic_average"
+            app:layout_constraintTop_toBottomOf="@id/vote_count"
+            tools:text="2.5" />
+
+        <TextView
+            android:id="@+id/popularity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:drawablePadding="@dimen/default_padding"
+            android:gravity="start|center"
+            android:text="@{mediaItem.popularity.toString()}"
+            android:textColor="?attr/colorOnSecondary"
+            android:visibility="@{mediaItem.showPopularity ? View.VISIBLE : View.GONE}"
+            app:drawableStartCompat="@drawable/ic_popularity"
+            app:layout_constraintTop_toBottomOf="@id/vote_average"
+            tools:text="2.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
